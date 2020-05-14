@@ -1,0 +1,38 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "amplify-foodperu-dev-111814-authRole",
+			"UnauthRoleArn": "arn:aws:iam::021927626533:role/amplify-foodperu-dev-111814-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::021927626533:role/amplify-foodperu-dev-111814-authRole",
+			"Region": "us-east-1",
+			"DeploymentBucketName": "amplify-foodperu-dev-111814-deployment",
+			"UnauthRoleName": "amplify-foodperu-dev-111814-unauthRole",
+			"StackName": "amplify-foodperu-dev-111814",
+			"StackId": "arn:aws:cloudformation:us-east-1:021927626533:stack/amplify-foodperu-dev-111814/5a6e3a00-9535-11ea-be2d-0a726edfb5e3",
+			"AmplifyAppId": "djmuijlaomlp4"
+		}
+	},
+	"auth": {
+		"foodperu41d8ce07": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false,
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-foodperu-dev-111814-deployment/amplify-cfn-templates/auth/foodperu41d8ce07-cloudformation-template.yml",
+				"logicalId": "authfoodperu41d8ce07"
+			},
+			"lastPushTimeStamp": "2020-05-13T16:31:50.391Z",
+			"output": {
+				"AppClientSecret": "1513djtfgf6u689t4tm09hporu46dog2pdeiraj6pnsoc5mlnoej",
+				"UserPoolId": "us-east-1_4mwuhtxYz",
+				"AppClientIDWeb": "3qm3pupvji2pk5uc96h0u5g0dg",
+				"AppClientID": "2kntmjk0tcmgu5n351h0jl9c6g",
+				"IdentityPoolId": "us-east-1:27a19859-e980-4b3b-b212-dfcb819e7a1b",
+				"IdentityPoolName": "foodperu41d8ce07_identitypool_41d8ce07__dev",
+				"UserPoolName": "foodperu41d8ce07_userpool_41d8ce07"
+			},
+			"lastPushDirHash": "SGprRnVdzoBkk+pEteTNh26y3aE="
+		}
+	}
+}

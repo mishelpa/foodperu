@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-foodperu-dev-111814-authRole",
+            "UnauthRoleArn": "arn:aws:iam::021927626533:role/amplify-foodperu-dev-111814-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::021927626533:role/amplify-foodperu-dev-111814-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-foodperu-dev-111814-deployment",
+            "UnauthRoleName": "amplify-foodperu-dev-111814-unauthRole",
+            "StackName": "amplify-foodperu-dev-111814",
+            "StackId": "arn:aws:cloudformation:us-east-1:021927626533:stack/amplify-foodperu-dev-111814/5a6e3a00-9535-11ea-be2d-0a726edfb5e3",
+            "AmplifyAppId": "djmuijlaomlp4"
+        },
+        "categories": {
+            "auth": {
+                "foodperu41d8ce07": {}
+            }
+        }
+    }
+}

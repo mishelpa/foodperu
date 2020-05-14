@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    
+      <div class="row" *ngIf="!toVerifyEmail">
+        <div class="col-12 d-flex justify-content-around">
+          <div class="d-inline-block mb-5 text-center">
+            <h5 class="d-inline-block mr-2 text-uppercase pointer" [ngClass]="signInFlag ? 'text-orange' : ''" (click)="showLogInView()">Iniciar sesión</h5>
+            <div class="line-decorator" *ngIf="signInFlag"></div>
+          </div>
+          <div class="d-inline-block mb-5 text-center">
+            <h5 class="d-inline-block ml-2 text-uppercase pointer" [ngClass]="signUpFlag ? 'text-orange' : ''" (click)="showRegisterView()">Crear cuenta</h5>
+            <div class="line-decorator" *ngIf="signUpFlag"></div>
+          </div>
+        </div>
+      </div>
+</div>
+<div *ngIf="signUpFlag">
+    <form   [formGroup]="loginForm" action="" (ngSubmit)="singUpToAWS(loginForm.value)"  >
+        
+    
+        <label for="name">Nombre</label>
+        <input type="text" name="" id="name" formControlName = "name">
+
+        <label for="lastName">Apellido</label>
+        <input type="text" name="" id="lastName" formControlName = "lastName">
+        
+        <label for="email" >Email</label>
+        <input type="email" name="" id="email" formControlName = "email">
+
+        <label for="password">Contraseña</label>
+        <input type="password" name="" id="password" formControlName = "password">
+
+        <label for="dni">DNI(opcional)</label>
+        <input type="text" name="" id="dni" formControlName = "dni">
+        
+        <button type="submit">Iniciar sesión</button>
+    </form>
+</div>
+
