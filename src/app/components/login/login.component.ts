@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { Auth } from 'aws-amplify';
-import{AuthUserService} from'src/app/services/auth-user.service';
+import {AuthUserService} from 'src/app/services/auth-user.service';
 // import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
-=======
-import { Auth, Hub } from 'aws-amplify';
-import { FormControl, FormGroup } from '@angular/forms';
->>>>>>> d47266b60764dfebc0e40359cd3e30bb1074f6de
 
 
 @Component({
@@ -15,31 +10,13 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-<<<<<<< HEAD
-  signInFlag: boolean = true;
-  signUpFlag: boolean = false;
-  toVerifyEmail: boolean = false;
-  userName: string;
-  userLastName: string;
-  userEmail: string;
-  displayVerificationModal: boolean  = false;
-  displayVerificationSuccessModal: boolean = false;
-  displayVerificationFailedModal: boolean = false;
-  displayLoginFailedModal: boolean = false;
-
-
+export class LoginComponent {
 
   constructor(
     // public ng4LoadingSpinnerService :Ng4LoadingSpinnerService
-    public authUser:AuthUserService
+    public authUser: AuthUserService
   ) {}
-=======
->>>>>>> d47266b60764dfebc0e40359cd3e30bb1074f6de
 
-
-
-  constructor() {}
   signInFlag = true;
   signUpFlag = false;
   toVerifyEmail = false;
@@ -53,8 +30,8 @@ export class LoginComponent implements OnInit {
   user: any;
 
   loginForm = new FormGroup({
-    emailLogin: new FormControl('',[Validators.required, Validators.email]),
-    passwordLogin: new FormControl ('',Validators.required)
+    emailLogin: new FormControl('', [Validators.required, Validators.email]),
+    passwordLogin: new FormControl ('', Validators.required)
   });
 
   registerForm = new FormGroup({
@@ -66,10 +43,9 @@ export class LoginComponent implements OnInit {
 
 });
 
-
-
-  ngOnInit(): void {
-  }
+verifyEmailForm = new FormGroup({
+  verifyEmail: new FormControl('', [Validators.required, Validators.minLength(5)])
+});
 
 showLogInView() {
     this.signInFlag = true;
@@ -84,17 +60,10 @@ showLogInView() {
 
   singUpToAWS(value) {
   console.log(value);
-<<<<<<< HEAD
-this.userEmail = this.registerForm.value.email
+  this.userEmail = this.registerForm.value.email;
   const user = {
       username: this.registerForm.value.email,
       password: this.registerForm.value.password,
-=======
-
-  const user = {
-      username: this.loginForm.value.email,
-      password: this.loginForm.value.password,
->>>>>>> d47266b60764dfebc0e40359cd3e30bb1074f6de
 
       attributes: {
           name:  this.registerForm.value.name,
@@ -113,26 +82,25 @@ this.userEmail = this.registerForm.value.email
       .catch(err => console.log(err));
   }
 
-<<<<<<< HEAD
   signInToAWS(value) {
     console.log(value + 'aqui');
     // e.preventDefault();
     // this.ng4LoadingSpinnerService.show();
     const authInfo = {
-       username: this.loginForm.value.emailLogin,
-       password: this.loginForm.value.passwordLogin
-     };
+      username: this.loginForm.value.emailLogin,
+      password: this.loginForm.value.passwordLogin
+    };
 
     Auth.signIn(authInfo).then(user => {
       console.log(authInfo);
 
-       console.log(user);
+      console.log(user);
     //   console.log(user['attributes'].name);
 
-       this.userName = user['attributes'].name;
-       this.authUser.storeSessionUserName(this.userName);
+      this.userName = user.attributes.name;
+      this.authUser.storeSessionUserName(this.userName);
       //  this._router.navigate(['/home'])
-     });
+    });
     //   .catch(err => {
     //     this._ng4LoadingSpinnerService.hide();
     //     this.displayLoginFailedModal = true;
@@ -161,12 +129,12 @@ this.userEmail = this.registerForm.value.email
   }
 
   onVerify(verifycode) {
-   console.log(verifycode,this.userEmail);
+   console.log(verifycode, this.userEmail);
 
-    Auth.confirmSignUp(this.userEmail, verifycode.verifyEmail, {
+   Auth.confirmSignUp(this.userEmail, verifycode.verifyEmail, {
       forceAliasCreation: true
       }).then(data => {
-        console.log(data)
+        console.log(data);
         this.displayVerificationSuccessModal = true;
       })
         .catch(err => {
@@ -183,6 +151,4 @@ this.userEmail = this.registerForm.value.email
 
 
 
-=======
->>>>>>> d47266b60764dfebc0e40359cd3e30bb1074f6de
 }

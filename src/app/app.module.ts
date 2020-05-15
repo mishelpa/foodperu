@@ -28,7 +28,6 @@ Amplify.configure(awsmobile);
     DialogModule,
     BrowserAnimationsModule
     // Ng4LoadingSpinnerModule
-    AmplifyUIAngularModule
   ],
   providers: [],
   bootstrap: [AppComponent]
