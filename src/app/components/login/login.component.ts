@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { Auth } from 'aws-amplify';
 import{AuthUserService} from'src/app/services/auth-user.service';
 // import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+=======
+import { Auth, Hub } from 'aws-amplify';
+import { FormControl, FormGroup } from '@angular/forms';
+>>>>>>> d47266b60764dfebc0e40359cd3e30bb1074f6de
 
 
 @Component({
@@ -11,6 +16,7 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+<<<<<<< HEAD
   signInFlag: boolean = true;
   signUpFlag: boolean = false;
   toVerifyEmail: boolean = false;
@@ -28,17 +34,29 @@ export class LoginComponent implements OnInit {
     // public ng4LoadingSpinnerService :Ng4LoadingSpinnerService
     public authUser:AuthUserService
   ) {}
+=======
+>>>>>>> d47266b60764dfebc0e40359cd3e30bb1074f6de
 
 
 
-  ngOnInit(): void {
-  }
+  constructor() {}
+  signInFlag = true;
+  signUpFlag = false;
+  toVerifyEmail = false;
+  userName: string;
+  userLastName: string;
+  userEmail: string;
+  displayVerificationModal  = false;
+  displayVerificationSuccessModal = false;
+  displayVerificationFailedModal = false;
+  displayLoginFailedModal = false;
+  user: any;
 
   loginForm = new FormGroup({
     emailLogin: new FormControl('',[Validators.required, Validators.email]),
     passwordLogin: new FormControl ('',Validators.required)
   });
-  
+
   registerForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
@@ -48,9 +66,10 @@ export class LoginComponent implements OnInit {
 
 });
 
-verifyEmailForm = new FormGroup({
-  verifyEmail: new FormControl('',[Validators.required, Validators.minLength(5)]) 
-})
+
+
+  ngOnInit(): void {
+  }
 
 showLogInView() {
     this.signInFlag = true;
@@ -62,13 +81,20 @@ showLogInView() {
     this.signUpFlag = true;
   }
 
-  
+
   singUpToAWS(value) {
   console.log(value);
+<<<<<<< HEAD
 this.userEmail = this.registerForm.value.email
   const user = {
       username: this.registerForm.value.email,
       password: this.registerForm.value.password,
+=======
+
+  const user = {
+      username: this.loginForm.value.email,
+      password: this.loginForm.value.password,
+>>>>>>> d47266b60764dfebc0e40359cd3e30bb1074f6de
 
       attributes: {
           name:  this.registerForm.value.name,
@@ -87,6 +113,7 @@ this.userEmail = this.registerForm.value.email
       .catch(err => console.log(err));
   }
 
+<<<<<<< HEAD
   signInToAWS(value) {
     console.log(value + 'aqui');
     // e.preventDefault();
@@ -98,7 +125,7 @@ this.userEmail = this.registerForm.value.email
 
     Auth.signIn(authInfo).then(user => {
       console.log(authInfo);
-      
+
        console.log(user);
     //   console.log(user['attributes'].name);
 
@@ -135,9 +162,9 @@ this.userEmail = this.registerForm.value.email
 
   onVerify(verifycode) {
    console.log(verifycode,this.userEmail);
-   
-    Auth.confirmSignUp(this.userEmail, verifycode.verifyEmail, {      
-      forceAliasCreation: true    
+
+    Auth.confirmSignUp(this.userEmail, verifycode.verifyEmail, {
+      forceAliasCreation: true
       }).then(data => {
         console.log(data)
         this.displayVerificationSuccessModal = true;
@@ -145,15 +172,17 @@ this.userEmail = this.registerForm.value.email
         .catch(err => {
           this.displayVerificationFailedModal = true;
           console.log(err);
-        } 
+        }
       );
   }
 
   closeLoginFailedModal() {
     this.displayLoginFailedModal = false;
   }
-  
 
 
 
+
+=======
+>>>>>>> d47266b60764dfebc0e40359cd3e30bb1074f6de
 }

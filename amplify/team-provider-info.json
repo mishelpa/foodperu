@@ -13,7 +13,9 @@
         },
         "categories": {
             "auth": {
-                "foodperu41d8ce07": {}
+                "foodperu41d8ce07": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"246510886403014\",\"client_secret\":\"1b88d8d0224c022afa0819df530f2f31\"},{\"ProviderName\":\"Google\",\"client_id\":\"198525153505-lgs82m878q21o5mp8hare7b78l3gqgni.apps.googleusercontent.com\",\"client_secret\":\"kOrj5nFZSk-xxkXrGV6qEJW_\"}]"
+                }
             }
         }
     }

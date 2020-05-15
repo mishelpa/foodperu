@@ -5,8 +5,8 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 import Amplify, { Auth } from 'aws-amplify';
-import awsconfig from './aws-exports';
-Amplify.configure(awsconfig);
+import awsmobile from './aws-exports';
+Amplify.configure(awsmobile);
 
 if (environment.production) {
   enableProdMode();

@@ -9,11 +9,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { from } from 'rxjs';
+import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+import Amplify from 'aws-amplify';
+import awsmobile from '../aws-exports';
+import { SignSocialComponent } from './components/sign-social/sign-social.component';
+
+Amplify.configure(awsmobile);
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    SignSocialComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +28,7 @@ import { from } from 'rxjs';
     DialogModule,
     BrowserAnimationsModule
     // Ng4LoadingSpinnerModule
+    AmplifyUIAngularModule
   ],
   providers: [],
   bootstrap: [AppComponent]
