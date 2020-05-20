@@ -25,7 +25,7 @@
       </div>
   
     </form>
-    <small id="emailHelp" class="form-text text-muted mb-3 pointer" style="text-decoration: underline;">Olvidé mi contraseña</small>
+    <small id="emailHelp" class="form-text text-muted mb-3 pointer"data-toggle="modal" data-target="#staticBackdrop" style="text-decoration: underline;">Olvidé mi contraseña</small>
     <button role="button" class="btn btn-forms-submit w-100" (click)="signInToAWS(loginForm.value)">Iniciar sesión</button>
   
   </div>
@@ -45,12 +45,12 @@
 
       <div class="form-group">
         <label for="email" >Correo electrónico</label>
-        <input class="form-control" type="email" name="" id="email" formControlName = "email">
+        <input class="form-control" type="email" name="" id="email" formControlName = "email" >
       </div>
 
       <div class="form-group">
         <label for="password">Contraseña</label>
-        <input class="form-control" type="password" name="" id="password" formControlName = "password">
+        <input class="form-control" type="password" name="" id="password" formControlName = "password" placeholder="al menos 5 carácter">
       </div>
 
        <div class="form-group">
@@ -74,6 +74,41 @@
     <button role="button" class="btn btn-forms-submit w-100" (click)="onVerify(verifyEmailForm.value)">Verificar</button>
   </div>
 
+  <!-- <div *ngIf="restorePassword">
+    <form action="" [formGroup]="restorePasswordForm"(ngSubmit)="sendPasswordCode(restorePasswordForm.value)">
+      <div class="form-group">
+        <H2> RESTAURAR CONTRASEÑA</H2>
+        <P>In gresa tu correo electrónicoy te enviaremos las instrucciones para restaurar tu contraseña</P>
+        <input type="email" class="form-control" id="exampleInputverifycode1" aria-describedby="verifyCodeHelp" #verifycode formControlName = "email" placeholder="email">
+      </div>
+    <button role="button" class="btn btn-forms-submit w-100" >Aceptar</button>
+    </form>
+   
+  </div> -->
+
+  <!-- <div *ngIf="newPassword">
+    <form  [formGroup]="passwordForm"(ngSubmit)="verifyPassword(passwordForm.value)">
+      <div class="form-group">
+        <label for="">Código</label>
+        <input type="number" class="form-control" id="exampleInputverifycode1" aria-describedby="verifyCodeHelp" #verifycode formControlName = "code" placeholder="Ingresa el código">
+      </div>
+
+      <div>
+      <label for="">Contraseña</label>
+      <input type="password" name="password" id="exampleInputverifycode1" aria-describedby="verifyCodeHelp" #verifycode formControlName = "password" placeholder="Ingresa tu contraseña">
+      </div>
+      <div>
+        <label for="">Contraseña</label>
+        <input type="password" name="password" id="exampleInputverifycode1" aria-describedby="verifyCodeHelp" #verifycode formControlName = "passwordRepeat" placeholder="vuelve a escribir tu contraseña">
+      </div>
+        <button role="button" class="btn btn-forms-submit w-100" >Aceptar</button>
+     </form> 
+     <div
+  class="error"
+  *ngIf="user.get('code').hasError('required') && user.get('code').touched">
+  Código requerido
+</div>  
+  </div> -->
 </div>
 
 <!-- VERIFICATION MODAL -->
@@ -119,8 +154,6 @@
     <button type="button" class="btn btn-dark" (click)="closeLoginFailedModal()">Aceptar</button>
   </p-footer>
 </p-dialog>
-
-
 
 
 

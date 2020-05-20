@@ -13,6 +13,9 @@ import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import Amplify from 'aws-amplify';
 import awsmobile from '../aws-exports';
 import { SignSocialComponent } from './components/sign-social/sign-social.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { PageLoginComponent } from './pages/page-login/page-login.component';
+import { AppRoutingModule } from './app-routing.module';
 
 Amplify.configure(awsmobile);
 
@@ -20,13 +23,16 @@ Amplify.configure(awsmobile);
   declarations: [
     AppComponent,
     LoginComponent,
-    SignSocialComponent
+    SignSocialComponent,
+    ResetPasswordComponent,
+    PageLoginComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     DialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppRoutingModule
     // Ng4LoadingSpinnerModule
   ],
   providers: [],

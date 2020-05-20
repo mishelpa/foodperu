@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from 'aws-amplify';
 import {AuthUserService} from 'src/app/services/auth-user.service';
-// import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators, FormBuilder,  ValidatorFn, AbstractControl } from '@angular/forms';
 
 
 @Component({
@@ -12,10 +12,17 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 })
 export class LoginComponent {
 
-  constructor(
-    // public ng4LoadingSpinnerService :Ng4LoadingSpinnerService
-    public authUser: AuthUserService
-  ) {}
+  constructor(public fb:FormBuilder, public authUser: AuthUserService, private router: Router) {
+
+    
+  }
+ 
+
+ngOnInit() {
+
+}
+
+
 
   signInFlag = true;
   signUpFlag = false;
@@ -27,7 +34,7 @@ export class LoginComponent {
   displayVerificationSuccessModal = false;
   displayVerificationFailedModal = false;
   displayLoginFailedModal = false;
-  user: any;
+
 
   loginForm = new FormGroup({
     emailLogin: new FormControl('', [Validators.required, Validators.email]),
@@ -38,7 +45,7 @@ export class LoginComponent {
     name: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required, Validators.minLength(5)]),
     dni: new FormControl('', [ Validators.minLength(8), Validators.maxLength(8)])
 
 });
@@ -84,8 +91,6 @@ showLogInView() {
 
   signInToAWS(value) {
     console.log(value + 'aqui');
-    // e.preventDefault();
-    // this.ng4LoadingSpinnerService.show();
     const authInfo = {
       username: this.loginForm.value.emailLogin,
       password: this.loginForm.value.passwordLogin
@@ -95,18 +100,14 @@ showLogInView() {
       console.log(authInfo);
 
       console.log(user);
-    //   console.log(user['attributes'].name);
-
       this.userName = user.attributes.name;
       this.authUser.storeSessionUserName(this.userName);
-      //  this._router.navigate(['/home'])
-    });
-    //   .catch(err => {
-    //     this._ng4LoadingSpinnerService.hide();
-    //     this.displayLoginFailedModal = true;
-    //     console.log(err)
-    //   }
-    // );
+    })
+       .catch(err => {
+         this.displayLoginFailedModal = true;
+         console.log(err)
+       }
+     );
   }
 
 
@@ -147,8 +148,6 @@ showLogInView() {
   closeLoginFailedModal() {
     this.displayLoginFailedModal = false;
   }
-
-
 
 
 }
