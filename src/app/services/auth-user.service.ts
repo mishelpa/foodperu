@@ -11,4 +11,11 @@ export class AuthUserService {
   storeSessionUserName(userName: any){
 this.storage.setItem('sesion un', userName);
   }
+  getSessionUserName(): any | null {
+    return this.storage.getItem('session un')
+  }
+
+  removeSessionUserName() {
+    this.storage.removeItem('session un')
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormBuilder,  ValidatorFn, AbstractControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Auth } from 'aws-amplify';
 import { group } from '@angular/animations';
 
@@ -9,15 +9,16 @@ import { group } from '@angular/animations';
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.scss']
 })
-export class ResetPasswordComponent implements OnInit {
+export class ResetPasswordComponent {
    newPassword = false;
    restorePassword = true;
-  errorMessage = '';
-  userEmail ='';
+   errorMessage = '';
+  userEmail = '';
+  passwordForm: any;
 
 
 
-  constructor(private fb:FormBuilder,) { }
+  constructor(private fb:FormBuilder) { }
 
   emailReset = new FormControl();
  
@@ -25,40 +26,36 @@ export class ResetPasswordComponent implements OnInit {
   resetField() {
     this.emailReset.reset();
     this.errorMessage = '';
+    
   }
   restorePasswordForm = new FormGroup({
     email: new FormControl('')
   })
 
-  // matchingPasswords(passwordKey: string, confirmPasswordKey: string){
-  //   return (group: FormGroup):{[key:string]:any}=>{
-  //     let password = group.controls[passwordKey];
-  //     let confirmPassword = group.controls[confirmPasswordKey];
-    
-  //     if(password.value !== confirmPassword.value){
-  //       return{
-  //         mismatchedPasswords: true
-  //       }
-  //     }
-  //   }
-  //     }
+  //  passwordForm = new FormGroup({
+  //   code: new FormControl('', [Validators.required]),
+  //  password: new FormControl('',[Validators.required, Validators.minLength(8)]),
+  //   passwordRepeat: new FormControl('',[Validators.required,Validators.minLength(8)])
+  //  });
 
-   passwordForm = new FormGroup({
-     code: new FormControl('', [Validators.required]),
-   password: new FormControl('',[Validators.required, Validators.minLength(8)]),
-    passwordRepeat: new FormControl('',[Validators.required,Validators.minLength(8)])
+
+   ngOnInit(): void {
+     this.passwordForm = this.fb.group({
+       code: ['', [Validators.required]],
+       password: ['', [Validators.required,Validators.minLength(8)]],
+       passwordRepeat: ['', [Validators.required,Validators.minLength(8), this.passwordMatcher.bind(this)]]
+     });
    }
-  //  ,{validators: this.matchingPasswords(' password','passwordRepeat')}
-   )
 
+private passwordMatcher(control: FormControl): { [s: string]: boolean }{
 
-  ngOnInit(): void {
-    this.passwordForm = this.fb.group({
-      code: ['', [Validators.required]],
-        password: ['', Validators.required],
-        passwordRepeat: ['', Validators.required]
-    });
+  if(
+    this.passwordForm && (control.value !== this.passwordForm.controls.password.value)
+  ){
+    return { passwordNotMatch: true };
   }
+  return null;
+}
 
   sendPasswordCode(value){
     this.restorePassword = false
